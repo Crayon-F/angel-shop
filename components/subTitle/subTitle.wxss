@@ -1,0 +1,19 @@
+/* components/subTitle/subTitle.wxss */
+.sub-title{
+	width: 80%;
+	height: 100rpx;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin:0 auto;
+}
+.sub-title-text{
+	padding:0 20px;
+}
+.sub-title::after,.sub-title::before{
+	content: '';
+	display: block;
+	flex:1;
+	height: 1px;
+	background: #969799;
+}

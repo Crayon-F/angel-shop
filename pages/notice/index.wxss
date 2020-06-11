@@ -1,0 +1,22 @@
+/* pages/notice/index.wxss */
+page{
+	background: #f3f4f5;
+}
+.notice-list-item{
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding:20rpx;
+	width: 90%;
+	margin:10px auto;
+	background: #fff;
+	box-shadow: 0 0 16rpx 0 rgba(36,44,69,0.20);
+	border-radius: 8px;
+
+}
+.notice-list-item-title{
+	margin-bottom: 10px;
+}
+.watch{
+	color:#FEB21C;
+}

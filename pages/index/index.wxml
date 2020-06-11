@@ -1,0 +1,101 @@
+<!--index.wxml-->
+<view class="index">
+  <view class="banner">
+    <view class="page-section page-section-spacing swiper">
+      <swiper class="banner-swiper" indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}"  interval="{{interval}}" duration="{{duration}}" circular>
+        <block wx:for="{{bannerList}}" wx:key="index">
+          <swiper-item>
+            <image class="banner-img" src="{{item.picUrl}}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="inp">
+       <input class="weui-input search" bindconfirm="bindconfirm" bindinput="bindKeyInput" placeholder="请输入关键词"/>
+       <image bindtap="searchShop" class="search-icon" src="../../images/icon/search.svg"></image>
+    </view>
+    <view class="scroll-shop">
+       <swiper class="shop-swiper" autoplay circular vertical
+        >
+        <block wx:for="{{scrollShopList}}" wx:key="index">
+          <swiper-item class='shop-swiper-item'>
+            <navigator class="shop-swiper-item-navigator" url="/pages/goods-details/goods-details?goodsId={{item.goodsId}}">
+              <image mode="aspectFill" class="shop-swiper-pic" src="{{item.avatarUrl}}"></image>
+              <text>{{item.nick}}</text> <text>{{item.goodsName}}</text>
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+  </view>
+  <view class="new-shop" wx:if='{{notice.totalPage}}'>
+    <view class="notice">
+      <image src="../../images/notice.png" class="shop-swiper-pic"></image>
+       <view class="notice-swiper">
+       <swiper class="notice-swiper-list" autoplay circular vertical
+        >
+        <block wx:for="{{notice.dataList}}" wx:key="index">
+          <swiper-item class='notice-item'>
+            <navigator url="/pages/notice/notice?id={{item.id}}">
+              <text>{{item.title}}</text>
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    </view>
+    <navigator url="/pages/notice/index">更多》</navigator>
+  </view>
+  <view class="index-nav">
+    <view wx:for="{{navList}}" wx:key='id' class="index-nav-item-link" data-id="{{item.id}}" bindtap="goCategory">
+      <image class="index-nav-img" src="{{item.icon}}"></image>
+      <text class="index-nav-text">{{item.name}}</text>
+    </view>
+  </view>
+  <!-- 限时秒杀 -->
+  <view class="seckill" wx:if="{{seckillList.length}}">
+    <sub-title title='限时秒杀'></sub-title>
+    <view class="seckill-list">
+      <view class="seckill-list-item" wx:for="{{seckillList}}" wx:key='index'>
+        <image class="seckill-pic" src="{{item.pic}}"></image>
+        <view class="seckill-item-right">
+          <view class="seckill-item-right-title">{{item.name}}</view>
+          <view class="seckill-item-right-timer">
+            <van-count-down
+              wx:if='{{item.isStart === false}}'
+              time="{{ item.dateStartInt }}" 
+              format="距离开始: 天 HH 时 mm 分 ss 秒" >
+            </van-count-down>
+            <van-count-down
+              wx:if='{{item.isOver === false && item.isStart === true}}'
+              time="{{ item.dateEndInt }}" 
+              format="剩余:DD 天 HH 时 mm 分 ss 秒" >
+            </van-count-down>
+          
+          </view>
+          <view class="seckill-item-right-number">
+            <view class="price">
+              <text class="min-price">￥{{item.minPrice}}</text>
+              <text class="original-price">￥{{item.originalPrice}}</text>
+            </view>
+            <view class="seckill-item-right-btn">
+              <button wx:if='{{item.isStart === false}}'>未开始</button>
+              <button wx:if='{{item.isOver === true}}'>已结束</button>
+              <button wx:if='{{item.stores <= 0}}'>已抢完</button>
+              <button size="mini" type="warn" wx:if='{{item.stores > 0 && item.isStart === true && item.isOver === false}}'>立即抢购</button>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- 精品推荐 -->
+  <view class="recommend" wx:if='{{recommendList.length > 0}}'>
+    <sub-title title='精品推荐'></sub-title>
+    <view class="recommend-list">
+      <goods-item wx:for="{{recommendList}}" wx:key='id' item='{{item}}'></goods-item>
+    </view>
+  </view>
+    
+</view>

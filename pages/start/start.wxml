@@ -1,0 +1,17 @@
+<!--start.wxml-->
+<view class="start">
+	<view class="container">
+	  <view class="page-section page-section-spacing swiper">
+		<swiper indicator-dots="{{indicatorDots}}"
+			autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+			<block wx:for="{{list}}" wx:key="index">
+			<swiper-item>
+				<image style='height:{{screenHeight}}rpx' class="img" src="{{item.picUrl}}"></image>
+				<button type="primary" size="mini" class="btn-go " wx:if="{{index+1 == list.length}}" bindtap="goIndex">进入店铺</button>
+			</swiper-item>
+			</block>
+		</swiper>
+    </view>
+	</view>
+</view>
+

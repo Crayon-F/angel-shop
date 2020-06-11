@@ -1,0 +1,9 @@
+/**app.wxss**/
+page{
+ min-height: 100%;
+ width: 100%; 
+ font-size: 24rpx;
+}
+.container {
+  height: 100%;
+} 

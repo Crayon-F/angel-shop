@@ -1,0 +1,8 @@
+/* pages/notice/notice.js.wxss */
+.notice-title{
+	display: flex;
+	align-items: center;
+	height: 80rpx;
+	border-bottom: 1px solid #ccc;
+	padding-left: 10px;
+}

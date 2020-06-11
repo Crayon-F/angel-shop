@@ -1,0 +1,12 @@
+<!--pages/notice/index.wxml-->
+<view class="notice-list">
+	<navigator wx:for="{{list}}" wx:key="index" url="/pages/notice/notice?id={{item.id}}">
+		<view class="notice-list-item">
+			<view class="left">
+				<view class="notice-list-item-title">{{item.title}}</view>
+				<view class="notice-list-item-timer">{{item.dateUpdate}}</view>
+			</view>
+			<view class="watch">查看》</view>
+		</view>
+	</navigator>
+</view>
