@@ -140,8 +140,8 @@ page {
   margin-top:20rpx;
 
 }
-.seckill{
-
+.good-module{
+  background: #f6f6f6;
 }
 .eckill-list{
   width: 98%;
@@ -186,13 +186,81 @@ page {
   text-decoration: line-through;
   margin-left:10px;
 }
-.recommend-list{
-  background: #F2f2f2;
-  padding:24rpx;
+.bargain{
+  padding:20rpx;
+  background: #fff;
+}
+.bargain-tile{
+  padding:16px 16px 13px;
+  font-weight: 700;
+  border-bottom: 1px solid #ccc;
+}
+.bargain-item{
   display: flex;
+  align-items: center;
+  padding:20px;
+}
+.bargain-item-pic{
+  width: 100rpx;
+  height: 100rpx;
+}
+.bargain-item-info{
+  flex:1;
+  padding-left:10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+.bargain-item-info-title{
+  
+}
+.bargain-item-name{
+  width: 100%;
+  font-size: 30rpx;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+}
+.bargain-item-price{
+  margin-top:6px;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
 }
-goods-item{
-  width: 48%;
+.bargain-item-kanjiaPrice{
+  margin-left:10px;
+  color:#e64340;
 }
-
+.collage{
+  margin-top:10px;
+}
+.collage-list{
+  padding:0 10px;
+}
+.collage-list-item{
+  background: #fff;
+  margin:0 auto;
+}
+.collage-list-item-pic{
+  width: 100%;
+  height: 180px;
+  background-position:center ;
+}
+.collage-list-item-name{
+  font-size: 30rpx;
+}
+.collage-list-item-price{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.pingtuanPrice{
+  color:#e64340;
+  margin-right:10px;
+  font-size: 28rpx;
+}
+.collage-list-item-originalPrice{
+  text-decoration: line-through;
+  font-size: 12px;
+}

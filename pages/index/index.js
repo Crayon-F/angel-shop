@@ -18,7 +18,16 @@ Page({
     notice:{},
     navList:[],
     seckillList:[],
-    recommendList:[]
+    recommendList:[],
+    bargainList:[],
+    collageList:[],
+    form:{
+      categoryId: '',
+      page: 1,
+      pageSize: 20
+    },
+    goodsList:[],
+    noData:false
   },
   onLoad(){
     this.getBannerList()
@@ -27,6 +36,52 @@ Page({
     this.getIndexNav()
     this.getSeckillList()
     this.getRecommendList()
+    this.bargainList()
+    this.collageList()
+    this.getGooodsList()
+  },
+  getGooodsList(){
+    wx.showLoading({
+      "mask": true
+    })
+    api.getGoods(this.data.form)
+      .then(res=>{
+        wx.hideLoading()
+        if(res.data.code === 0){
+          let { data } = res.data;
+          this.setData({
+            goodsList:[...this.data.goodsList,...data]
+          })
+        }else if(res.data.code === 700){
+          this.setData({
+            noData:true
+          })
+        }
+      })
+  },
+  collageList(){
+    api.getCollage({
+      pingtuan:true
+    }).then(res=>{
+      if(res.data.code === 0){
+        let { data } = res.data;
+        this.setData({
+          collageList:data
+        })
+      }
+    })
+  },
+  bargainList(){
+    api.getSeckill({
+      kanjia:true
+    }).then(res=>{
+      if(res.data.code === 0){
+        let { data } = res.data;
+        this.setData({
+          bargainList:data
+        })
+      }
+    })
   },
   getRecommendList(){
     api.getRecommend({
@@ -149,7 +204,40 @@ Page({
     // if(res.code == 0 && res.data.data.length > 0){
     //   console.log(res.data.data)
     // }
-  }
+  },
+  /**
+	 * 页面相关事件处理函数--监听用户下拉动作
+	 */
+	onPullDownRefresh: function () {
+    this.setData({
+      form:{
+        categoryId: '',
+        page: 1,
+        pageSize: 20
+      },
+      goodsList:[]
+    })
+    wx.showNavigationBarLoading();
+    this.getGooodsList()
+
+    wx.stopPullDownRefresh()
+	},
+
+	/**
+	 * 页面上拉触底事件的处理函数
+	 */
+	onReachBottom: function () {
+    console.log()
+    this.setData({
+      form:{
+        categoryId: '',
+        page: ++this.data.form.page,
+        pageSize: 20
+      }
+    },()=>{
+      this.getGooodsList()
+    })
+	},
     
   
 })

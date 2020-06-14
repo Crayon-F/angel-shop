@@ -53,49 +53,110 @@
       <text class="index-nav-text">{{item.name}}</text>
     </view>
   </view>
+
+  <view class="good-module">
   <!-- 限时秒杀 -->
-  <view class="seckill" wx:if="{{seckillList.length}}">
-    <sub-title title='限时秒杀'></sub-title>
-    <view class="seckill-list">
-      <view class="seckill-list-item" wx:for="{{seckillList}}" wx:key='index'>
-        <image class="seckill-pic" src="{{item.pic}}"></image>
-        <view class="seckill-item-right">
-          <view class="seckill-item-right-title">{{item.name}}</view>
-          <view class="seckill-item-right-timer">
-            <van-count-down
-              wx:if='{{item.isStart === false}}'
-              time="{{ item.dateStartInt }}" 
-              format="距离开始: 天 HH 时 mm 分 ss 秒" >
-            </van-count-down>
-            <van-count-down
-              wx:if='{{item.isOver === false && item.isStart === true}}'
-              time="{{ item.dateEndInt }}" 
-              format="剩余:DD 天 HH 时 mm 分 ss 秒" >
-            </van-count-down>
-          
-          </view>
-          <view class="seckill-item-right-number">
-            <view class="price">
-              <text class="min-price">￥{{item.minPrice}}</text>
-              <text class="original-price">￥{{item.originalPrice}}</text>
+    <view class="seckill" wx:if="{{seckillList.length}}">
+      <sub-title title='限时秒杀'></sub-title>
+      <view class="seckill-list">
+        <view class="seckill-list-item" wx:for="{{seckillList}}" wx:key='index'>
+          <image class="seckill-pic" src="{{item.pic}}"></image>
+          <view class="seckill-item-right">
+            <view class="seckill-item-right-title">{{item.name}}</view>
+            <view class="seckill-item-right-timer">
+              <van-count-down
+                wx:if='{{item.isStart === false}}'
+                time="{{ item.dateStartInt }}" 
+                format="距离开始: 天 HH 时 mm 分 ss 秒" >
+              </van-count-down>
+              <van-count-down
+                wx:if='{{item.isOver === false && item.isStart === true}}'
+                time="{{ item.dateEndInt }}" 
+                format="剩余:DD 天 HH 时 mm 分 ss 秒" >
+              </van-count-down>
+            
             </view>
-            <view class="seckill-item-right-btn">
-              <button wx:if='{{item.isStart === false}}'>未开始</button>
-              <button wx:if='{{item.isOver === true}}'>已结束</button>
-              <button wx:if='{{item.stores <= 0}}'>已抢完</button>
-              <button size="mini" type="warn" wx:if='{{item.stores > 0 && item.isStart === true && item.isOver === false}}'>立即抢购</button>
+            <view class="seckill-item-right-number">
+              <view class="price">
+                <text class="min-price">￥{{item.minPrice}}</text>
+                <text class="original-price">￥{{item.originalPrice}}</text>
+              </view>
+              <view class="seckill-item-right-btn">
+                <button wx:if='{{item.isStart === false}}'>未开始</button>
+                <button wx:if='{{item.isOver === true}}'>已结束</button>
+                <button wx:if='{{item.stores <= 0}}'>已抢完</button>
+                <button size="mini" type="warn" wx:if='{{item.stores > 0 && item.isStart === true && item.isOver === false}}'>立即抢购</button>
+              </view>
             </view>
           </view>
         </view>
       </view>
     </view>
-  </view>
-  <!-- 精品推荐 -->
-  <view class="recommend" wx:if='{{recommendList.length > 0}}'>
-    <sub-title title='精品推荐'></sub-title>
-    <view class="recommend-list">
-      <goods-item wx:for="{{recommendList}}" wx:key='id' item='{{item}}'></goods-item>
+    <!-- 精品推荐 -->
+    <view class="recommend" wx:if='{{recommendList.length > 0}}'>
+      <sub-title title='精品推荐'></sub-title>
+      <goods-list list='{{recommendList}}'></goods-list>
     </view>
+    <!-- 疯狂砍价 -->
+    <view class="bargain" wx:if='{{bargainList.length > 0}}'>
+      <view class="bargain-tile">
+        <text>疯狂砍价</text>
+      </view>
+      <view class="bargain-content">
+        <view class="bargain-item" wx:for="{{bargainList}}" wx:key='id'>
+          <image class="bargain-item-pic" src="{{item.pic}}"></image>
+          <view class="bargain-item-info">
+            <view class="bargain-item-info-title">
+              <view class="bargain-item-name">{{item.name}}</view>
+              <view class="bargain-item-characteristic">{{item.characteristic}}</view>
+            </view>
+            <view class="bargain-item-price">
+              <view>
+                <text class="bargain-item-originalPrice">原价：{{item.originalPrice}}</text>
+                <text class="bargain-item-kanjiaPrice">低价：{{item.kanjiaPrice}}</text>
+              </view>
+              <view>
+                <navigator url="/pages/goods-details/goods-details?goodsId={{item.id}}">
+                  <button size="mini" type="warn" >砍价</button>
+                </navigator>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 全民拼团 -->
+    <view class="collage" wx:if='{{collageList.length > 0}}'>
+        <sub-title title='全民拼团'></sub-title>
+        <view class="collage-list">
+          <view class="collage-list-item"  wx:for='{{collageList}}' wx:key='id'>
+            <image class="collage-list-item-pic" src="{{item.pic}}"></image>
+            <view>
+              <view class="collage-list-item-name">{{item.name}}</view>
+              <view>{{item.characteristic}}</view>
+            </view>
+            <view class="collage-list-item-price">
+              <view >
+                <text class="pingtuanPrice">￥{{item.pingtuanPrice}}</text>
+                <text class="collage-list-item-originalPrice">￥{{item.originalPrice}}</text>
+              </view>
+              <view>
+                <navigator url="/pages/goods-details/goods-details?goodsId={{item.id}}">
+                  <button size="mini" type="warn" >拼团</button>
+                </navigator>
+              </view>
+            </view>             
+          </view>
+        </view>
+        <view class="goods-all">
+          <sub-title title='商品列表'></sub-title>
+          <goods-list list='{{goodsList}}'></goods-list>
+        </view>
+        <view wx:if="{{noData}}">
+          <sub-title title='没有更多了'></sub-title>
+        </view>
+      </view>
   </view>
+  
     
 </view>

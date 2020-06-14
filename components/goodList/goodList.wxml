@@ -1,0 +1,15 @@
+<!--components/goodItem/goodItem.wxml-->
+<view class="good-list">
+	<view class="good-item" wx:for="{{list}}" wx:key='id' item='{{item}}'>
+		<navigator class="good-link"  url="/pages/goods-details/goods-details?goodsId={{item.id}}">
+			<image src="{{item.pic}}" class="good-item-pic"></image>
+			<view class="item-info">
+				<view>{{item.name}}</view>
+				<view class="price">
+					<text class="minPrice">{{item.minPrice}}</text>
+					<text class="original-price">{{item.originalPrice}}</text>
+				</view>
+			</view>
+		</navigator>
+</view>
+</view>

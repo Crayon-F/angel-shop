@@ -1,11 +1,11 @@
 {
 	"navigationBarTitleText": "天使童装",
-	"enablePullDownRefresh": false,
+	"enablePullDownRefresh": true,
 	"disableScroll": true,
 	"navigationStyle": "custom",
 	"usingComponents":{
 		"sub-title":"../../components/subTitle/subTitle",
 		"van-count-down": "/miniprogram_npm/@vant/weapp/count-down/index",
-		"goods-item":"../../components/goodItem/goodItem"
+		"goods-list":"../../components/goodList/goodList"
 	}
   }

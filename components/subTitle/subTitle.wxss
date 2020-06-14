@@ -1,4 +1,8 @@
 /* components/subTitle/subTitle.wxss */
+.sub-component{
+	width: 100%;
+	background-color:#fff ;
+}
 .sub-title{
 	width: 80%;
 	height: 100rpx;
@@ -6,6 +10,7 @@
 	justify-content: center;
 	align-items: center;
 	margin:0 auto;
+	
 }
 .sub-title-text{
 	padding:0 20px;

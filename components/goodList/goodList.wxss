@@ -1,0 +1,40 @@
+/* components/goodItem/goodItem.wxss */
+.good-list{
+	background: #F2f2f2;
+	padding:24rpx;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.good-item{
+	width: 48%;
+	box-sizing: border-box;
+	background: #fff;
+	display: flex;
+	margin-bottom:10px;
+}
+.good-link{
+	width: 100%;
+}
+.good-item-pic{
+	width: 100%;
+	height: 240px;
+}
+.item-info{
+	padding:20rpx;
+}
+.price{
+	width: 80%;
+	padding:10px 0;
+	display: flex;
+	justify-content: space-between;
+
+}
+.original-price{
+	text-decoration: line-through;
+	color:#aaa;
+}
+  .minPrice{
+	color:#e64340;
+  }

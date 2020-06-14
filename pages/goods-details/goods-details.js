@@ -5,7 +5,7 @@ Page({
 	 * 页面的初始数据
 	 */
 	data: {
-
+		currentId:""
 	},
 
 	/**
@@ -13,6 +13,10 @@ Page({
 	 */
 	onLoad: function (options) {
 		console.log(options)
+		let { goodsId } =  options;
+		this.setData({
+			currentId:goodsId
+		})
 	},
 
 	/**

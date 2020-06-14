@@ -26,5 +26,11 @@ export default{
 	},
 	getRecommend(params){
 		return ajax.post('shop/goods/list',params)
+	},
+	getCollage(params){
+		return ajax.post('shop/goods/list',params)
+	},
+	getGoods(params){
+		return ajax.post('shop/goods/list',params)
 	}
 }
